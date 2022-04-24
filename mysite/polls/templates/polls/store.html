@@ -1,10 +1,7 @@
+{% extends 'polls/main.html' %}
+{% load static %}
+{% block content %}
+
 <h3>Store</h3>
 
-<!---load static template tag, so we can use it--->
-
-{% load static %}
-
-<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
-<!---href link goes and looks inside the static file that was already created, to the folder css, and to the file main.css-->
-
-<img src="{% static 'images/cart.png' %}">
+{% endblock content %}
