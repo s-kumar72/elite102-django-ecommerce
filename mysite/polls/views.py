@@ -1,8 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import *
 
 def store(request):
-    context = {}
+    products = Product.objects.all()
+    context = {'products': products}
     return render(request, 'polls/store.html', context)
 
 def cart(request):
