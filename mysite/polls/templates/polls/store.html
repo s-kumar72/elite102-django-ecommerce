@@ -1,7 +1,31 @@
 {% extends 'polls/main.html' %}
 {% load static %}
 {% block content %}
+<!--creating rows and columns with bootstrap-->
+    <div class="row">
+        <div class="col-lg-4">
+            <img class="thumbnail" src="{% static images/placeholder.png %}">
+            <div class="box-element product">
+                <h6><strong>product</strong></h6>
+                <hr>
+            </div>
+        </div>
 
-<h3>Store</h3>
+        <div class="col-lg-4">
+            <img class="thumbnail" src="{% static images/placeholder.png %}">
+            <div class="box-element product">
+                <h6><strong>product</strong></h6>
+                <hr>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <img class="thumbnail" src="{% static images/placeholder.png %}">
+            <div class="box-element product">
+                <h6><strong>product</strong></h6>
+                <hr>
+            </div>
+        </div>
+    </div>
 
 {% endblock content %}
