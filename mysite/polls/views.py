@@ -32,7 +32,7 @@ def checkout(request):
     return render(request, 'polls/checkout.html', context)
 
 def updateItem(request):
-    data = json.loads(request.data)
+    data = json.loads(request.body)
     productId = data['productId']
     action = data['action']
 
