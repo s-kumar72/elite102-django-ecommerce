@@ -1,4 +1,4 @@
-var updateBtns =  document.getElementsByClassName("update-cart")
+var updateBtns = document.getElementsByClassName("update-cart")
 
 for(var i = 0; i < updateBtns.length; i++){
     updateBtns[i].addEventListener('click', function(){
@@ -35,6 +35,6 @@ function updateUserOrder(productId, action){
     })
 
     .then((data) =>{
-       console.log('Item was added')
+       console.log('data:', data)
     })
 }
