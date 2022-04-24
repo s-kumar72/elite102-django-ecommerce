@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import *
+from django.http import JsonResponse
 
 def store(request):
     products = Product.objects.all()
@@ -28,3 +29,6 @@ def checkout(request):
         order = {'get_cart_total':0, 'get_cart_items': 0}
     context = {'items':items, 'order':order}
     return render(request, 'polls/checkout.html', context)
+
+def updateItem(request):
+    return JsonResponse('Item was added', safe=False)
