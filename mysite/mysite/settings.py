@@ -130,6 +130,8 @@ STATICFILES_DIRS = [
 # ensures that uploaded images go into the static images folder instead of base directory
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
 
+MEDIA_URL = '/images/'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
