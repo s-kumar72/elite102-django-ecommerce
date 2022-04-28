@@ -6,7 +6,7 @@ from django.http import JsonResponse
 import json
 
 import stripe
-stripe.api_key = 'sk_test_51KtIX5GbVPHpvVe8wwUpSDBxqlRtA38D04boTNLJ9I4tU6ELPVNrHVCN4cYah59HoFY799hdxXZizalb6HgG7fRR00jM3bHGHm'
+stripe.api_key = 'STRIPE SECRET KEY'
 
 def store(request):
     products = Product.objects.all()
