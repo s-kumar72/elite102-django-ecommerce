@@ -1,0 +1,12 @@
+{% extends 'polls/main.html' %}
+{% load static %}
+{% block content %}
+	<div id="box">
+		<img id="success-icon" src="{% static 'images/check.png' %}">
+		<h4>Payment received!</h4>
+		
+		<hr>
+		<a class="btn btn-outline-dark" href="{% url 'store' %}">&#x2190; Back to Store</a>
+	</div>
+
+{% endblock content %}

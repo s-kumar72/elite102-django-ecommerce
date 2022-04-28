@@ -1,8 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.urls import reverse
 from django.http import HttpResponse
 from .models import *
 from django.http import JsonResponse
 import json
+
+import stripe
+stripe.api_key = 'sk_test_51KtIX5GbVPHpvVe8wwUpSDBxqlRtA38D04boTNLJ9I4tU6ELPVNrHVCN4cYah59HoFY799hdxXZizalb6HgG7fRR00jM3bHGHm'
 
 def store(request):
     products = Product.objects.all()
@@ -30,6 +34,30 @@ def checkout(request):
         order = {'get_cart_total':0, 'get_cart_items': 0}
     context = {'items':items, 'order':order}
     return render(request, 'polls/checkout.html', context)
+
+def charge(request):
+    if request.method == 'POST':
+        print('Data:', request.POST)
+    
+    amount = int(float(request.POST['cost']))
+
+    customer = stripe.Customer.create(
+        email=request.POST['email'],
+        name=request.POST['name'],
+        source=request.POST['stripeToken']
+    )
+
+    charge = stripe.Charge.create(
+        customer=customer,
+        amount=amount*100,
+        currency='usd',
+        description='Payment'
+    )
+    
+    return redirect(reverse('success'))
+
+def successMsg(request):
+	return render(request, 'polls/success.html')
 
 def updateItem(request):
     data = json.loads(request.body)
