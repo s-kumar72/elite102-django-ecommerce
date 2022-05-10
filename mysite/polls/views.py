@@ -4,11 +4,22 @@ from django.http import HttpResponse
 from .models import *
 from django.http import JsonResponse
 import json
+import datetime
 
 import stripe
 stripe.api_key = 'sk_test_51KtIX5GbVPHpvVe8wwUpSDBxqlRtA38D04boTNLJ9I4tU6ELPVNrHVCN4cYah59HoFY799hdxXZizalb6HgG7fRR00jM3bHGHm'
 
 def store(request):
+    if request.user.is_authenticated:
+        customer = request.user.customer
+        order, created = Order.objects.get_or_create(customer=customer, complete=False)
+        items = order.orderitem_set.all()
+        cartItems = order.get_cart_items
+    else:
+        items = []
+        order = {'get_cart_total': 0, 'get_cart_items': 0}
+        cartItems = order['get_cart_items']
+
     products = Product.objects.all()
     context = {'products': products}
     return render(request, 'polls/store.html', context)
@@ -84,3 +95,23 @@ def updateItem(request):
         orderItem.delete()
 
     return JsonResponse('Item was added', safe=False)
+
+def processOrder(request):
+    transaction_id = datetime.datetime.now().timestamp()
+    data = json.loads(request.body)
+
+    if request.user.is_authenticated:
+        customer = request.user.customer
+        order, created = Order.objects.get_or_create(customer=customer, complete=False)
+        total = float(data['form']['total'])
+        order.transaction_id = transaction_id
+
+        if total == order.get_cart_total:
+            order.complete=True
+        order.save()
+
+        order.get_cart_total = 0
+
+    else:
+        print('user is not logged in')
+    return JsonResponse('Payment complete', safe=False)

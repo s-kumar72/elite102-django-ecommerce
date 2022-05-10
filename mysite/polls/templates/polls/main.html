@@ -57,7 +57,7 @@
             <a href="{% url 'cart' %}">
                <img  id="cart-icon" src="{% static 'images/cart.png' %}">
            </a>
-           <p id="cart-total">0</p>
+           <p id="cart-total">{{order.get_cart_items}}</p>
 
           </div>
         </div>
@@ -77,5 +77,6 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
     <script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/stripe.js' %}"></script>
 </body>
 </html>
