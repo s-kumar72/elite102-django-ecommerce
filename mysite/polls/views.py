@@ -7,7 +7,7 @@ import json
 import datetime
 
 import stripe
-stripe.api_key = 'sk_test_51KtIX5GbVPHpvVe8wwUpSDBxqlRtA38D04boTNLJ9I4tU6ELPVNrHVCN4cYah59HoFY799hdxXZizalb6HgG7fRR00jM3bHGHm'
+stripe.api_key = 'STRIPE SECRET KEY'
 
 def store(request):
     if request.user.is_authenticated:
