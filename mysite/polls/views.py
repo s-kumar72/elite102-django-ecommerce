@@ -21,7 +21,7 @@ def store(request):
         cartItems = order['get_cart_items']
 
     products = Product.objects.all()
-    context = {'products': products}
+    context = {'products': products, 'order':order}
     return render(request, 'polls/store.html', context)
 
 def cart(request):
